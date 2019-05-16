@@ -12,7 +12,9 @@ import java.awt.event.MouseMotionListener;
 
 /**
  *
- * @author Owner
+ * Class to get mouse input for menus and other functions
+ * 
+ * @author Deep
  */
 public class MouseManager implements MouseListener, MouseMotionListener {
     private boolean leftPressed, rightPressed;

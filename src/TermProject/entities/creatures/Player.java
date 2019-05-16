@@ -6,19 +6,24 @@
 package TermProject.entities.creatures;
 
 import TermProject.Game;
+import static TermProject.Game.menuState;
 import TermProject.Handler;
 import TermProject.entities.Entity;
-import TermProject.gFX.Animation;
-import TermProject.gFX.Assets;
+import TermProject.graphics.Animation;
+import TermProject.graphics.Assets;
 import TermProject.inventory.Inventory;
+import TermProject.states.MenuState;
+import TermProject.states.State;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 /**
+ * main player of the game
  *
- * @author Owner
+ * @author Deep
  */
 public class Player extends Creature {
     
@@ -28,6 +33,8 @@ public class Player extends Creature {
     private long attackTimer = attackCoolDown;
     
     boolean isAttacking;
+    
+    int lives = 3;
     
     
     private Animation walkDown, walkUp, walkLeft, walkRight;
@@ -126,7 +133,7 @@ public class Player extends Creature {
             if (e.equals(this))
                 continue;
             if (e.getCollisionBounds(0, 0).intersects(attackRect)) {
-                e.hurt(1);
+                e.hurt(3);
                 return;
             }
         }
@@ -147,6 +154,7 @@ public class Player extends Creature {
             xMove = -speed;
         if (handler.getKeyManager().right)
             xMove = speed;  
+       
     }
     
   
@@ -160,6 +168,7 @@ public class Player extends Creature {
            g.drawImage(getCurrentAnimationFrame(),(int) (x - handler.getCamera().getxOffset()),(int) (y - handler.getCamera().getyOffset()), width, height, null); 
         }
         
+        // reused from tank game
         int playerHealthBar = this.getHealth() * 3 + 2;
         int playerHBarX = (int) this.getX();
         int playerHBarY = (int) this.getY();
@@ -234,7 +243,18 @@ public class Player extends Creature {
     
     @Override
     public void die() {
-        System.out.println("You Loose");
+        if (this.health <= 0) {
+            lives--;
+            System.out.println("You Loose");
+            if (lives > 0) {                                        
+                State.setState(new MenuState(handler));
+                this.active = true;
+                handler.getGame().start();
+            }else if (lives <= 0) {
+                System.out.println("Game Over");
+                System.exit(0);
+            }
+        }
     }
 
     

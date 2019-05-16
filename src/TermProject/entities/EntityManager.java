@@ -13,14 +13,17 @@ import java.util.Comparator;
 import java.util.Iterator;
 
 /**
+ * This class manages entities with an array list
  *
- * @author Owner
+ * @author Deep
  */
 public class EntityManager {
     
     private Handler handler;
     private Player player;
     private ArrayList<Entity> entities;
+    
+    // comparator compares height and yPos of entities to determine render order
     private Comparator<Entity> sortEntitiesList = new Comparator<Entity>() {
         @Override
         public int compare(Entity e1, Entity e2) {

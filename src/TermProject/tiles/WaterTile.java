@@ -5,11 +5,11 @@
  */
 package TermProject.tiles;
 
-import TermProject.gFX.Assets;
+import TermProject.graphics.Assets;
 
 /**
  *
- * @author Owner
+ * @author Deep
  */
 public class WaterTile extends Tile {
     

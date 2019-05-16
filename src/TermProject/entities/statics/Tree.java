@@ -6,8 +6,8 @@
 package TermProject.entities.statics;
 
 import TermProject.Handler;
-import TermProject.gFX.Animation;
-import TermProject.gFX.Assets;
+import TermProject.graphics.Animation;
+import TermProject.graphics.Assets;
 import TermProject.items.Item;
 import TermProject.tiles.Tile;
 import java.awt.Color;
@@ -15,7 +15,7 @@ import java.awt.Graphics;
 
 /**
  *
- * @author Owner
+ * @author Deep
  */
 public class Tree extends StaticEntity {
     

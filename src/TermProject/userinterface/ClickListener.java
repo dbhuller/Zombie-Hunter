@@ -7,7 +7,7 @@ package TermProject.userinterface;
 
 /**
  *
- * @author Owner
+ * @author Deep
  */
 public interface ClickListener {
     

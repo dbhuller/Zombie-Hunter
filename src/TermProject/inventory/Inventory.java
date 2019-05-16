@@ -6,8 +6,8 @@
 package TermProject.inventory;
 
 import TermProject.Handler;
-import TermProject.gFX.Assets;
-import TermProject.gFX.Text;
+import TermProject.graphics.Assets;
+import TermProject.graphics.Text;
 import TermProject.items.Item;
 import com.sun.glass.events.KeyEvent;
 import java.awt.Color;
@@ -16,7 +16,9 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Owner
+ * Player inventory class
+ * 
+ * @author Deep
  */
 public class Inventory {
     

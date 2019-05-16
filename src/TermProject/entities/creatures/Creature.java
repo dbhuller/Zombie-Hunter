@@ -12,8 +12,9 @@ import TermProject.tiles.Tile;
 import java.awt.Graphics;
 
 /**
+ *  Basis for creature class, subclass of entity
  *
- * @author Owner
+ * @author Deep
  */
 public abstract class Creature extends Entity {
     

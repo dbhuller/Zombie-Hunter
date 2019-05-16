@@ -11,8 +11,9 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 /**
+ * Abstact class for Entity game objects 
  *
- * @author Owner
+ * @author Deep
  */
 public abstract class Entity {
     

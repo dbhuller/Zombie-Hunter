@@ -21,8 +21,8 @@ import TermProject.utils.Utils;
 import java.awt.Graphics;
 
 /**
- *
- * @author Owner
+ * Main world for the game
+ * @author Deep
  */
 public class World {
     private int width, height;
@@ -137,6 +137,7 @@ public class World {
         return t;
     }
     
+    // Use delimeters to split text file of world into tokens and pass into world tiles array 
     private void loadWorld(String path) {
         String file = Utils.loadFileAsString(path);
         String[] tokens = file.split("\\s+");

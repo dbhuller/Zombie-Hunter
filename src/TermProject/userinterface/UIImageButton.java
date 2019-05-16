@@ -5,12 +5,15 @@
  */
 package TermProject.userinterface;
 
+import TermProject.graphics.Assets;
+import TermProject.graphics.Text;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 /**
  *
- * @author Owner
+ * @author Deep
  */
 public class UIImageButton extends UIObject {
     
@@ -28,10 +31,11 @@ public class UIImageButton extends UIObject {
 
     @Override
     public void render(Graphics g) {
-        if (hovering)
-            g.drawImage(images[1], (int) x, (int) y, width, height, null);
-        else 
-            g.drawImage(images[0], (int) x, (int) y, width, height, null);
+        
+        if (hovering)            
+            g.drawImage(images[1], (int) x + (width * 1/2), (int) y + (height * 1/2), width, height, null);
+        else            
+            g.drawImage(images[0], (int) x + (width * 1/2), (int) y + (height * 1/2), width, height, null);
     }
 
     @Override

@@ -11,7 +11,7 @@ import java.awt.event.MouseEvent;
 
 /**
  *
- * @author Owner
+ * @author Deep
  */
 public abstract class UIObject {
     

@@ -11,7 +11,7 @@ import java.awt.Graphics;
 
 /**
  *
- * @author Owner
+ * @author Deep
  */
 public abstract class State {
     //can be stored in another class
@@ -31,13 +31,18 @@ public abstract class State {
     
     //Class
     protected Handler handler;
-    
+
     public State(Handler handler) {
         this.handler = handler;
+ 
     }
     public abstract void update();
     
     public abstract void render(Graphics g);
+    
+
+    
+
     
     
 }

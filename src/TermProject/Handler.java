@@ -5,14 +5,14 @@
  */
 package TermProject;
 
-import TermProject.gFX.GameCamera;
+import TermProject.graphics.GameCamera;
 import TermProject.input.KeyManager;
 import TermProject.input.MouseManager;
 import TermProject.world.World;
 
 /**
  *
- * @author Owner
+ * @author Deep
  */
 public class Handler {
     private Game game;

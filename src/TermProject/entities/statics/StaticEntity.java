@@ -11,7 +11,7 @@ import java.awt.Graphics;
 
 /**
  * UNMOVING ENTITIES
- * @author Owner
+ * @author Deep
  */
 public abstract class StaticEntity extends Entity {
 

@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 
 /**
  *
- * @author Owner
+ * @author Deep
  */
 public class Tile {
     

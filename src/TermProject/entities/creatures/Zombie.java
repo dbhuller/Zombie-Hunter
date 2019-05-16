@@ -7,8 +7,8 @@ package TermProject.entities.creatures;
 
 import TermProject.Handler;
 import TermProject.entities.Entity;
-import TermProject.gFX.Animation;
-import TermProject.gFX.Assets;
+import TermProject.graphics.Animation;
+import TermProject.graphics.Assets;
 import TermProject.items.Item;
 import TermProject.tiles.Tile;
 import java.awt.Color;
@@ -18,8 +18,9 @@ import java.awt.image.BufferedImage;
 import java.util.Random;
 
 /**
+ * Another enemy 
  * 
- * @author Owner
+ * @author Deep
  */
 public class Zombie extends Creature {
     
@@ -39,7 +40,6 @@ public class Zombie extends Creature {
         super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
         
         
-        
         bounds.x = 8;
         bounds.y = 32;
         bounds.width = 16;
@@ -55,6 +55,61 @@ public class Zombie extends Creature {
         
     }
     
+    /**
+     * Time between attacks for Zombie is 800 ms
+     * Method checks which direction to create attack bounds box
+     * For all entities, if entity is this entity, continue
+     * if entity's bounds box intersects with this entity's collision bounds, then hurt that entity 
+     * 
+     */
+    public void checkAttack() {
+        attackTimer += System.currentTimeMillis() - lastAttackTimer;
+        lastAttackTimer = System.currentTimeMillis();
+        if (attackTimer < attackCoolDown) {
+            return;
+        }
+        
+        Rectangle attackRect = new Rectangle();
+        Rectangle cb = getCollisionBounds(0f, 0f);
+        int arSize = 20;
+        attackRect.width = arSize;
+        attackRect.height = arSize;
+        
+        if (xMove > 0) {    //right
+            attackRect.x = cb.x + cb.width;
+            attackRect.y = cb.y + cb.height / 2 - arSize / 2;
+        }
+        if (xMove < 0) {    //left
+            attackRect.x = cb.x - arSize;
+            attackRect.y = cb.y + cb.height / 2 - arSize / 2;
+        }
+        if (yMove > 0) {    //down
+            attackRect.x = cb.x + cb.width / 2 - arSize / 2;
+        }
+        if (yMove < 0) {    //up
+            attackRect.x = cb.x + cb.width / 2 - arSize / 2;
+        } else {
+            return;
+        }
+        
+        attackTimer = 0;
+        
+        for (Entity e : handler.getWorld().geteManager().getEntities()) {
+            if (e.equals(this))
+                continue;
+            if (e.getCollisionBounds(0, 0).intersects(attackRect)) {
+                e.hurt(1);
+                return;
+            }
+        }
+        
+        
+    }
+    
+    /**
+     * Handles movement in the x direction (Left and Right)
+     * Checks if creature collides with solid tile and moves accordingly
+     */
     @Override
     public void moveX() {
        if (xMove > 0) {    // moving right
@@ -125,7 +180,7 @@ public class Zombie extends Creature {
         walkRight.update();
         
         checkAttack();
-        attack();
+//        attack();
     }
     
     public BufferedImage getCurrentAnimation() {
@@ -141,85 +196,51 @@ public class Zombie extends Creature {
             return this.getCurrentAnimation();
     } 
     
-    
-
+    /**
+     * draw image at position specified 
+     * 
+     * @param g
+     */
     @Override
     public void render(Graphics g) {
         g.drawImage(getCurrentAnimation(), (int) (x - handler.getCamera().getxOffset()), (int) (y - handler.getCamera().getyOffset()), width, height, null);
         
         // draw rectangle
-        g.setColor(Color.red);        
-        g.drawRect((int) (x - handler.getCamera().getxOffset()), (int) (y - handler.getCamera().getyOffset()), width, height);
+//        g.setColor(Color.red);        
+//        g.drawRect((int) (x - handler.getCamera().getxOffset()), (int) (y - handler.getCamera().getyOffset()), width, height);
+        // reused from tank game
+        int zombieHealthBar = this.getHealth() * 3 + 2;
+        int zombieHBarX = (int) this.getX();
+        int zombieHBarY = (int) this.getY();
+        int zombieHBarWidth = (int) this.getWidth();
+        int zombieHBarHeight = 8;
+        int zombieHBarPadding = 2;
+        int offset = 4;
+        
+        g.setColor(Color.DARK_GRAY);
+        g.fillRect((int) (zombieHBarX - handler.getCamera().getxOffset()),(int) (zombieHBarY - handler.getCamera().getyOffset()), zombieHBarWidth, zombieHBarHeight);
+        g.setColor(Color.RED);
+        g.fillRect((int) (zombieHBarX - handler.getCamera().getxOffset()) + zombieHBarPadding, (int) (zombieHBarY - handler.getCamera().getyOffset()) + zombieHBarPadding,
+                zombieHBarWidth - offset, zombieHBarHeight - offset);
+        g.setColor(Color.GREEN);
+        g.fillRect((int) (zombieHBarX - handler.getCamera().getxOffset()) + zombieHBarPadding, (int) (zombieHBarY - handler.getCamera().getyOffset()) + zombieHBarPadding,
+                zombieHealthBar - offset, zombieHBarHeight - offset);
+        
     }
     
     @Override
     public void die() {
        if (this.health <= 0) { 
-           handler.getWorld().getiManager().addItem(Item.silverCoin.createNew((int) x, (int) y));
-           handler.getWorld().getiManager().addItem(Item.silverCoin.createNew((int) x  + 5, (int) y));
-           handler.getWorld().getiManager().addItem(Item.silverCoin.createNew((int) x  + 10, (int) y));
+           handler.getWorld().getiManager().addItem(Item.silverCoin.createNew((int) x + 32, (int) y + 32));
+           
            System.out.println("Zombie Defeated");
        }
     }
 
-    private void attack() {
-     if (inRange) {
-         player.hurt(1);
-     } 
+
         
     }
     
-    private boolean inRange() {
-        if (this.checkEntityCollision(0f, 0f) == player.checkEntityCollision(0f, 0f)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    
-    private void checkAttack() {
-        attackTimer += System.currentTimeMillis() - lastAttackTimer;
-        lastAttackTimer = System.currentTimeMillis();
-        if (attackTimer < attackCoolDown) {
-            return;
-        }
-        
-        Rectangle collisionBounds = getCollisionBounds(0, 0);
-        Rectangle attackRect = new Rectangle();
-        int attackRectSize = 20;
-        attackRect.width = attackRectSize;
-        attackRect.height = attackRectSize;
-        
-        if (inRange()) {
-            if (this.yMove < 0) {
-                attackRect.x = collisionBounds.x + collisionBounds.width / 2 - attackRectSize / 2;
-                attackRect.y = collisionBounds.y - attackRectSize;
-            } else if (this.yMove > 0) {
-                attackRect.x = collisionBounds.x + collisionBounds.width / 2 - attackRectSize / 2;
-                attackRect.y = collisionBounds.y + collisionBounds.height;
-            } else if (this.xMove < 0) {
-                attackRect.x = collisionBounds.x - attackRectSize;
-                attackRect.y = collisionBounds.y + collisionBounds.height / 2 - attackRectSize / 2;
-            } else if (this.xMove > 0) {
-                attackRect.x = collisionBounds.x + collisionBounds.width;
-                attackRect.y = collisionBounds.y + collisionBounds.height / 2 - attackRectSize / 2;      
-            } else {                
-                return;
-            }        
-        
-        attackTimer = 0;
-        
-        for (Entity e : handler.getWorld().geteManager().getEntities()) {
-            if (e.equals(this))
-                continue;
-            if (e.getCollisionBounds(0, 0).intersects(attackRect)) {
-                e.hurt(1);
-                return;
-            }
-        }
-    }
-        
-}
 
 
 
@@ -227,4 +248,4 @@ public class Zombie extends Creature {
     
     
     
-}
+

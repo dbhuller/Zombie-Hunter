@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Owner
+ * @author Deep
  */
 public class UIManager {
     private Handler handler;

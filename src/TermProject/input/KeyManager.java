@@ -10,13 +10,16 @@ import java.awt.event.KeyListener;
 
 /**
  *
- * @author Owner
+ * class to keep track of keys pressed and controls
+ * 
+ * @author Deep
  */
 public class KeyManager implements KeyListener {
 
     private boolean[] keys, justPressed, cantPress;
     public boolean up, down, left, right;
     public boolean attack;
+    public boolean quitToMenu;
     //public boolean upAttack, downAttack, leftAttack, rightAttack;
     
     public KeyManager() {
@@ -49,6 +52,7 @@ public class KeyManager implements KeyListener {
         right = keys[KeyEvent.VK_RIGHT];
         
         attack = keys[KeyEvent.VK_SPACE];
+        
         
 //       upAttack = keys[KeyEvent.VK_W];
 //       downAttack = keys[KeyEvent.VK_S];

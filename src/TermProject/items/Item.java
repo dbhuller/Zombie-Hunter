@@ -6,15 +6,16 @@
 package TermProject.items;
 
 import TermProject.Handler;
-import TermProject.gFX.Animation;
-import TermProject.gFX.Assets;
+import TermProject.graphics.Animation;
+import TermProject.graphics.Assets;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 /**
- *
- * @author Owner
+ * This class defines all pickUpable items in the game
+ * 
+ * @author Deep
  */
 public class Item {
     //handler
@@ -23,6 +24,10 @@ public class Item {
     public static Item goldCoin = new Item(Assets.gCoin, "Gold Coin", 0);
     public static Item silverCoin = new Item(Assets.sCoin, "Silver Coin", 1);
     public static Item copperCoin = new Item(Assets.cCoin, "Copper Coin", 2);
+    public static Item ruby = new Item(Assets.ruby, "Ruby", 3);
+    public static Item sapphire = new Item(Assets.sapphire, "Sapphire", 4);
+    public static Item diamond = new Item(Assets.diamond, "Diamond", 5);
+//    public static Item venomOrb = new Item(Assets.venomOrb, "Blood Orb", 6);
     
     
     //CLASS

@@ -6,15 +6,16 @@
 package TermProject.entities.statics;
 
 import TermProject.Handler;
-import TermProject.gFX.Assets;
+import TermProject.graphics.Assets;
 import TermProject.items.Item;
 import TermProject.tiles.Tile;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Random;
 
 /**
  *
- * @author Owner
+ * @author Deep
  */
 public class Rock extends StaticEntity {
     
@@ -27,12 +28,39 @@ public class Rock extends StaticEntity {
         bounds.height = 22;
     }
     
+    public void respawn() {
+        long respawnTime = System.currentTimeMillis();
+        if (!active) {
+            if (respawnTime > 1000) {
+                this.active = true;
+            }
+        }
+    }
+    
     @Override
     public void die() {
         if (this.health <= 0) {
-            System.out.println("Rock Defeated");
-            handler.getWorld().getiManager().addItem(Item.copperCoin.createNew((int) x, (int) y));
+            Random r = new Random();
+            int choose = r.nextInt(3);
+            if (choose == 0) {
+                System.out.println("Ruby Mined");
+                handler.getWorld().getiManager().addItem(Item.ruby.createNew((int) x, (int) y));                
+                
+                
+            } else if (choose == 1) {
+                System.out.println("Sapphire Mined");
+                handler.getWorld().getiManager().addItem(Item.sapphire.createNew((int) x, (int) y));
+                
+              
+            } else if (choose == 2) {
+                System.out.println("Diamond Mined");
+                handler.getWorld().getiManager().addItem(Item.diamond.createNew((int) x, (int) y));
+            }
+            
         }
+        active = false;
+        respawn();
+        
     }
     
     @Override

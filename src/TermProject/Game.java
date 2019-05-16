@@ -5,11 +5,11 @@
  */
 package TermProject;
 
-import TermProject.Display.Display;
-import TermProject.gFX.Assets;
-import TermProject.gFX.GameCamera;
-import TermProject.gFX.ImageLoader;
-import TermProject.gFX.SpriteSheet;
+import TermProject.Display.DisplayFrame;
+import TermProject.graphics.Assets;
+import TermProject.graphics.GameCamera;
+import TermProject.graphics.ImageLoader;
+import TermProject.graphics.SpriteSheet;
 import TermProject.input.KeyManager;
 import TermProject.input.MouseManager;
 import TermProject.states.GameState;
@@ -28,7 +28,7 @@ import java.awt.image.BufferedImage;
  */
 public class Game implements Runnable {
     
-   private Display display;
+   private DisplayFrame display;
    public String title;
    private int width, height;
    
@@ -40,7 +40,7 @@ public class Game implements Runnable {
    
    //states
    public State gameState;
-   public State menuState;
+   public static State menuState;
    
    //input
    private KeyManager keyManager;
@@ -66,7 +66,7 @@ public class Game implements Runnable {
    // initializes all components of the game
    private void init() {
        
-       display = new Display(title, width, height);
+       display = new DisplayFrame(title, width, height);
        display.getFrame().addKeyListener(keyManager);
        display.getFrame().addMouseListener(mouseManager);
        display.getFrame().addMouseMotionListener(mouseManager);
@@ -124,6 +124,7 @@ public class Game implements Runnable {
    public void run() {
        init();
        
+       //fps timer code from game development forum
        int fps = 60;    //update and render 60times per second
        double timePerUpdate = 1000000000 / fps;
        double delta = 0;

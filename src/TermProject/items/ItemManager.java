@@ -12,7 +12,9 @@ import java.util.Iterator;
 
 /**
  *
- * @author Owner
+ * manages items in the game with an arrayList<Item>
+ * 
+ * @author Deep
  */
 public class ItemManager {
     private Handler handler;

@@ -5,11 +5,11 @@
  */
 package TermProject.tiles;
 
-import TermProject.gFX.Assets;
+import TermProject.graphics.Assets;
 
 /**
  *
- * @author Owner
+ * @author Deep
  */
 public class RockTile extends Tile {
     public RockTile(int id) {
