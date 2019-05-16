@@ -5,7 +5,7 @@
 
 Game Controls
 --------
-  player 1:
+  Player:
 
     Up Arrow : move Up
   
