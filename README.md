@@ -20,6 +20,7 @@ Game Controls
     i : Toggle Inventory
     
   Inventory:
+  
     w : Scroll Up
     
     s : Scroll Down
@@ -39,10 +40,13 @@ Game Controls
   
 Game Info:
 ------------------------------------------------- 
-  Directory for game: 
-  csc413-secondgame-rogue-7/jar/.jar
+  Directory for game:
+  
+    csc413-secondgame-rogue-7/jar/SecondGame/TermProject.jar
 
-  To Run: Download the TankGame folder contianing the Resources folder and the TankGame.jar file onto your desktop. Go into the folder and double click the TankGame.jar file and the game should load up. Tested this way in my own enviornment. 
+  To Run: 
+  
+    Download/Clone the SecondGame folder in the jar folder under the root of the directory. Place the folder anywhere on your desktop and double click the .jar file, making sure that the Resources folder is in the directory as TermProject.jar 
 
 
 
