@@ -1,5 +1,5 @@
 # csc413-SecondGame
 
-## Student Name :
-## Student ID :
+## Student Name : Deepinder Bhuller
+## Student ID : 911770878
 
