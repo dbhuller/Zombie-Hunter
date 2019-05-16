@@ -46,7 +46,7 @@ Game Info:
 
   To Run: 
   
-    Download/Clone the SecondGame folder in the jar folder under the root of the directory. Place the folder anywhere on your desktop and double click the .jar file, making sure that the Resources folder is in the directory as TermProject.jar 
+   Download/Clone the SecondGame folder in the jar folder under the root of the directory. Place the folder anywhere on your desktop and double click the .jar file, making sure that the Resources folder is in the directory as TermProject.jar 
 
 
 
