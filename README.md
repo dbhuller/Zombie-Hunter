@@ -1,8 +1,5 @@
 # csc413-SecondGame
 
-## Student Name : Deepinder Bhuller
-## Student ID : 911770878
-
 Game Controls
 --------
   Player:
@@ -40,9 +37,6 @@ Game Controls
   
 Game Info:
 ------------------------------------------------- 
-  Directory for game:
-  
-    csc413-secondgame-rogue-7/jar/SecondGame/TermProject.jar
 
   To Run: 
   
