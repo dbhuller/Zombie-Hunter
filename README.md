@@ -1,4 +1,6 @@
-# csc413-SecondGame
+# Zombie Hunter Game
+
+Developed second 2D, top down Java game. This game takes elements of other melee/adventure type games with moving enemies of varrying strength, item drops and an inventory system. Implemented a working inventory system, achieved character animation and movement for some enemies.
 
 Game Controls
 --------
